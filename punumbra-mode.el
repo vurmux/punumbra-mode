@@ -3,7 +3,7 @@
 ;; Copyright (C) 2016 Andrey Voronov
 ;;
 ;; Author: Andrey Voronov
-;; Version: 1.0
+;; Version: 1.0.1
 ;; Keywords: faces
 ;;
 ;; This file is NOT part of GNU Emacs.
@@ -39,12 +39,13 @@
 (make-variable-buffer-local
   (defvar punumbra-keywords
       '(
+        ("0[xXbB]\\([0-9a-fA-F]+\\)" 1 font-lock-constant-face)
         ("[^a-zA-Z_]\\(\\-?[0-9]+\\)" 1 font-lock-constant-face)
         ("[\\\\(\\\\)\\{\\}]" . font-lock-function-name-face)
         ("\\[" . font-lock-function-name-face)
         ("\\]" . font-lock-function-name-face)
         ("[\\+\\=\\*\\/\\!\\>\\<\\,\\:\\;]" . font-lock-negation-char-face)
-        ("\\." . font-lock-negation-char-face)
+        ("\\-" . font-lock-negation-char-face)
         )
       )
   )
@@ -58,9 +59,6 @@
     (font-lock-mode 1)
     )
 
-(add-hook 'text-mode-hook 'punumbra-mode)
-(define-globalized-minor-mode global-punumbra-mode punumbra-mode
-  (lambda () (punumbra-mode 1)))
 (provide 'punumbra-mode)
 
 ;;; punumbra-mode.el ends here
